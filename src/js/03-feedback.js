@@ -13,12 +13,19 @@ populateText();
 function onFormSubmit(event) {
   event.preventDefault();
 
+  const {
+    elements: { email, message },
+  } = event.currentTarget;
+
+  if (email.value.trim() === '' || message.value === '') {
+    return alert('Please fill in all the fields!');
+  }
+  event.currentTarget.reset();
+
+  localStorage.removeItem(STORAGE_KEY);
   console.log('Отправляем форму');
   console.log(formData);
   formData = {};
-
-  event.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
 }
 
 function onTextInput(event) {
